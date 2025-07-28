@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: appwoyofal
+    env: docker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: DB_HOST
+        fromDatabase:
+          name: appwoyofal-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: appwoyofal-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: appwoyofal-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: appwoyofal-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: appwoyofal-db
+          property: password
+
+databases:
+  - name: appwoyofal-db
+    databaseName: appwoyofal
+    user: appwoyofal
