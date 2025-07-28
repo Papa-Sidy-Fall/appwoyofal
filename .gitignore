@@ -1,3 +1,4 @@
 # docker-compose.yml
 # Dockerfile
 vendor/
+info.txt
