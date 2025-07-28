@@ -1,0 +1,7 @@
+debug.php
+.env.exemple
+docker-compose.yml
+.git/
+logs/
+vendor/
+composer.lock

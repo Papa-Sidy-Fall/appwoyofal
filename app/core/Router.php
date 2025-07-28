@@ -14,6 +14,11 @@ class Router
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $method = $_SERVER['REQUEST_METHOD'];
 
+        // Debug pour Render
+        error_log("URI demandée: " . $uri);
+        error_log("Méthode: " . $method);
+        error_log("Routes disponibles: " . json_encode(array_keys(self::$routes)));
+
         foreach (self::$routes as $route => $info) {
             // Gestion des routes avec méthode HTTP (nouveau format)
             if (strpos($route, ':') !== false) {

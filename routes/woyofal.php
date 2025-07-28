@@ -5,6 +5,41 @@ use AppWoyofal\Controller\WoyofalController;
 
 // Routes API Woyofal
 
+// Route racine pour tester
+Router::get('/', function() {
+    \DevNoKage\Response::json([
+        'data' => 'AppWoyofal API est fonctionnel !',
+        'statut' => 'success',
+        'code' => 200,
+        'message' => 'Bienvenue sur AppWoyofal API'
+    ], 200);
+});
+
+// Route de diagnostic pour Render
+Router::get('/debug', function() {
+    $debug = [
+        'php_version' => PHP_VERSION,
+        'server_vars' => [
+            'REQUEST_URI' => $_SERVER['REQUEST_URI'] ?? 'non défini',
+            'REQUEST_METHOD' => $_SERVER['REQUEST_METHOD'] ?? 'non défini',
+            'HTTP_HOST' => $_SERVER['HTTP_HOST'] ?? 'non défini',
+        ],
+        'env_vars' => [
+            'ENVIRONMENT' => $_ENV['ENVIRONMENT'] ?? 'non défini',
+            'DB_HOST' => isset($_ENV['DB_HOST']) ? 'défini' : 'non défini',
+            'DB_NAME' => isset($_ENV['DB_NAME']) ? 'défini' : 'non défini',
+        ],
+        'autoload' => file_exists('/var/www/html/vendor/autoload.php') ? 'OK' : 'MANQUANT'
+    ];
+    
+    \DevNoKage\Response::json([
+        'data' => $debug,
+        'statut' => 'success',
+        'code' => 200,
+        'message' => 'Diagnostic système'
+    ], 200);
+});
+
 // Effectuer un achat
 Router::post('/api/woyofal/acheter', function() {
     $controller = new WoyofalController();
