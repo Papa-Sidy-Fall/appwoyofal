@@ -58,8 +58,10 @@ class Router
                 }
             }
         }
-
-        header("Location: /404");
+            // header("Location: /404");
+        http_response_code(404);
+        echo "Page non trouvée";
+        exit;
     }
 
     public static function setRoute(array $route): void
